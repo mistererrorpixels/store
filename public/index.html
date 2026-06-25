@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error Pixels — Premium Assets for Creators</title>
+  <meta name="description" content="LUTs, Presets, Overlays & Project Files for video editors and photographers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FFFFFF;
+      --surface:   #F7F5F0;
+      --surface-2: #EEEAE0;
+      --border:    #E0D9C8;
+      --accent:    #B8962E;
+      --accent-d:  #9A7A22;
+      --accent-l:  #D4AF50;
+      --black:     #111111;
+      --text:      #222222;
+      --muted:     #777777;
+      --white:     #FFFFFF;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius:    8px;
+      --transition: 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--black);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .logo .glitch {
+      display: inline-block;
+      color: var(--accent);
+      position: relative;
+      animation: glitch 4s infinite;
+    }
+    @keyframes glitch {
+      0%,90%,100% { transform: none; text-shadow: none; }
+      91%  { transform: skewX(-8deg); text-shadow: 2px 0 var(--accent); }
+      92%  { transform: skewX(6deg);  text-shadow: -2px 0 #8B6914; }
+      93%  { transform: none; }
+    }
+
+    nav a.nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    nav a.nav-link:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(184,150,46,0.08) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.025) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.025) 40px);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--accent-d);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(184,150,46,0.30);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── ASSETS SECTION ── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .section-title span { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    #assets {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      transition: all var(--transition);
+    }
+    .chip.active, .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(184,150,46,0.08);
+    }
+
+    /* ── GRID ── */
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) { .asset-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .asset-grid { grid-template-columns: 1fr; } }
+
+    /* ── CARD ── */
+    .asset-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .asset-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(184,150,46,0.5);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+    }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: var(--surface-2);
+    }
+
+    .card-thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--surface), var(--surface-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--border);
+    }
+
+    .card-body {
+      padding: 18px 20px 20px;
+    }
+
+    .card-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(184,150,46,0.10);
+      color: var(--accent);
+      border: 1px solid rgba(184,150,46,0.28);
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-price {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .card-price sup { font-size: 0.65em; vertical-align: super; color: var(--muted); }
+
+    .card-btn {
+      padding: 8px 18px;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .card-btn:hover { background: var(--accent-d); }
+
+    /* ── SKELETON ── */
+    .skeleton-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .skeleton-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    .skeleton-body { padding: 18px 20px 20px; }
+    .skeleton-line {
+      height: 12px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      margin-bottom: 10px;
+    }
+    .skeleton-line.short  { width: 40%; }
+    .skeleton-line.medium { width: 70%; }
+    .skeleton-line.full   { width: 100%; }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── MODAL OVERLAY ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.40);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 460px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+      animation: slideUp 0.22s ease;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 20px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color var(--transition);
+    }
+    .modal-close:hover { color: var(--black); }
+
+    .modal-asset-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(184,150,46,0.06);
+      border: 1px solid rgba(184,150,46,0.20);
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    .modal-asset-icon { font-size: 1.6rem; }
+    .modal-asset-name  { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; color: var(--black); }
+    .modal-asset-price { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: 2px; }
+
+    .modal h2 {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      padding: 11px 14px;
+      border-radius: 7px;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: #BBBBBB; }
+
+    .form-error {
+      font-size: 0.75rem;
+      color: #CC3333;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .modal-submit {
+      width: 100%;
+      padding: 13px;
+      margin-top: 8px;
+    }
+
+    .modal-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    /* ── SUCCESS / FAILURE ── */
+    .status-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--bg);
+    }
+
+    .status-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .status-icon { font-size: 3.5rem; margin-bottom: 20px; }
+
+    .status-card h2 {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .status-card p {
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .status-card .asset-name-display {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+    }
+    .download-btn:hover {
+      background: var(--accent-d);
+      box-shadow: 0 6px 24px rgba(184,150,46,0.30);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(0,0,0,0.15);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: var(--surface);
+    }
+
+    footer p { font-size: 0.8rem; color: var(--muted); }
+
+    footer a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    footer a:hover { color: var(--accent); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 999;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      color: var(--text);
+      max-width: 320px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    }
+    .toast.show { opacity: 1; transform: none; }
+
+    /* ── EMPTY / ERROR STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    .empty-state p { margin-top: 10px; font-size: 0.9rem; }
+
+    /* ── NAV MOBILE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo">
+      <span class="glitch">E</span>RROR PIXELS
+    </a>
+    <a href="#assets" class="nav-link">Assets</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div id="app">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <p class="hero-eyebrow">For creators who don't settle</p>
+      <h1>Premium Assets<br>for <span>Creators</span></h1>
+      <p class="hero-sub">LUTs &nbsp;·&nbsp; Presets &nbsp;·&nbsp; Overlays &nbsp;·&nbsp; Project Files</p>
+      <a href="#assets" class="btn btn-primary">Browse Assets ↓</a>
+    </section>
+
+    <!-- ASSETS -->
+    <section id="assets">
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">All <span>Assets</span></h2>
+          <div class="filter-chips" id="filterChips">
+            <button class="chip active" data-cat="All">All</button>
+          </div>
+        </div>
+        <div class="asset-grid" id="assetGrid">
+          <!-- skeleton -->
+          <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line full"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line full"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line full"></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 Error Pixels. All rights reserved.</p>
+      <a href="https://instagram.com/errorpixels" target="_blank" rel="noopener">@errorpixels ↗</a>
+    </footer>
+
+  </div>
+
+  <!-- PAYMENT MODAL -->
+  <div class="modal-overlay" id="paymentModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <h2>Complete Your Purchase</h2>
+
+      <div class="modal-asset-info" id="modalAssetInfo">
+        <span class="modal-asset-icon">🎬</span>
+        <div>
+          <div class="modal-asset-name" id="modalAssetName">Asset Name</div>
+          <div class="modal-asset-price" id="modalAssetPrice">₹0</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="inputName">Full Name</label>
+        <input class="form-input" type="text" id="inputName" placeholder="John Doe" autocomplete="name" />
+        <span class="form-error" id="errName">Enter your full name</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="inputEmail">Email</label>
+        <input class="form-input" type="email" id="inputEmail" placeholder="john@example.com" autocomplete="email" />
+        <span class="form-error" id="errEmail">Enter a valid email address</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="inputPhone">Phone</label>
+        <input class="form-input" type="tel" id="inputPhone" placeholder="10-digit mobile number" maxlength="10" autocomplete="tel" />
+        <span class="form-error" id="errPhone">Enter a valid 10-digit phone number</span>
+      </div>
+
+      <button class="btn btn-primary modal-submit" id="payBtn" onclick="submitPayment()">
+        Proceed to Pay
+      </button>
+
+      <p class="modal-note">🔒 Payments secured by PayU. Download link sent to your email after payment.</p>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZ8lr1yxREUmJ7HTmL99O6YdbVY1h6S8uMEnhfZp0CYpRD79cFHLQXmlAK6hM7tO-ipg/exec";
+
+    // ─── STATE ───
+    let allAssets = [];
+    let currentAsset = null;
+    let activeFilter = 'All';
+
+    // ─── INIT ───
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('status');
+      const txnid  = params.get('txnid');
+      const email  = params.get('email');
+
+      if (status === 'success') {
+        showSuccessPage(txnid, email);
+      } else if (status === 'failure') {
+        showFailurePage();
+      } else {
+        loadAssets();
+      }
+    });
+
+    // ─── LOAD ASSETS ───
+    async function loadAssets() {
+      try {
+        const res  = await fetch(APPS_SCRIPT_URL + '?action=getAssets');
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.message || 'Failed to load assets');
+
+        allAssets = data.assets;
+        buildFilterChips();
+        renderAssets(allAssets);
+      } catch (err) {
+        document.getElementById('assetGrid').innerHTML = `
+          <div class="empty-state">
+            <div style="font-size:2rem">📭</div>
+            <p>Couldn't load assets. Please try again later.</p>
+          </div>`;
+        console.error(err);
+      }
+    }
+
+    // ─── FILTER CHIPS ───
+    function buildFilterChips() {
+      const cats = ['All', ...new Set(allAssets.map(a => a.category))];
+      const container = document.getElementById('filterChips');
+      container.innerHTML = cats.map(c =>
+        `<button class="chip ${c === 'All' ? 'active' : ''}" data-cat="${c}" onclick="filterAssets('${c}')">${c}</button>`
+      ).join('');
+    }
+
+    function filterAssets(cat) {
+      activeFilter = cat;
+      document.querySelectorAll('.chip').forEach(c => {
+        c.classList.toggle('active', c.dataset.cat === cat);
+      });
+      const filtered = cat === 'All' ? allAssets : allAssets.filter(a => a.category === cat);
+      renderAssets(filtered);
+    }
+
+    // ─── RENDER CARDS ───
+    function renderAssets(assets) {
+      const grid = document.getElementById('assetGrid');
+      if (!assets.length) {
+        grid.innerHTML = `<div class="empty-state"><div style="font-size:2rem">🎨</div><p>No assets in this category yet.</p></div>`;
+        return;
+      }
+      grid.innerHTML = assets.map(a => `
+        <div class="asset-card" onclick="openPaymentModal('${a.id}')">
+          ${a.thumbnail
+            ? `<img class="card-thumb" src="${escHtml(a.thumbnail)}" alt="${escHtml(a.name)}" loading="lazy" />`
+            : `<div class="card-thumb-placeholder">🎬</div>`}
+          <div class="card-body">
+            <span class="card-badge">${escHtml(a.category)}</span>
+            <div class="card-name">${escHtml(a.name)}</div>
+            <div class="card-desc">${escHtml(a.description)}</div>
+            <div class="card-footer">
+              <div class="card-price"><sup>₹</sup>${a.price.toLocaleString('en-IN')}</div>
+              <button class="card-btn" onclick="event.stopPropagation(); openPaymentModal('${a.id}')">Buy & Download</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ─── PAYMENT MODAL ───
+    function openPaymentModal(assetId) {
+      const asset = allAssets.find(a => a.id === assetId);
+      if (!asset) return;
+      currentAsset = asset;
+
+      document.getElementById('modalAssetName').textContent  = asset.name;
+      document.getElementById('modalAssetPrice').textContent = '₹' + asset.price.toLocaleString('en-IN');
+      document.getElementById('inputName').value   = '';
+      document.getElementById('inputEmail').value  = '';
+      document.getElementById('inputPhone').value  = '';
+      clearErrors();
+      document.getElementById('paymentModal').classList.add('open');
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.remove('open');
+      currentAsset = null;
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closePaymentModal);
+    document.getElementById('paymentModal').addEventListener('click', function(e) {
+      if (e.target === this) closePaymentModal();
+    });
+
+    // ─── SUBMIT PAYMENT ───
+    async function submitPayment() {
+      if (!currentAsset) return;
+
+      const name  = document.getElementById('inputName').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
+      const phone = document.getElementById('inputPhone').value.trim();
+
+      if (!validateForm(name, email, phone)) return;
+
+      const btn = document.getElementById('payBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Processing...';
+
+      try {
+        const res = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'initiatePayment', assetId: currentAsset.id, name, email, phone }),
+        });
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.message || 'Payment initiation failed');
+
+        submitPayuForm(data.payuUrl, data.fields);
+      } catch (err) {
+        showToast('Something went wrong. Please try again.');
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'Proceed to Pay';
+      }
+    }
+
+    function submitPayuForm(payuUrl, fields) {
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = payuUrl;
+
+      Object.entries(fields).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type  = 'hidden';
+        input.name  = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+
+    // ─── VALIDATION ───
+    function validateForm(name, email, phone) {
+      let valid = true;
+      clearErrors();
+
+      if (!name || name.length < 2)                               { show('errName');  valid = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))   { show('errEmail'); valid = false; }
+      if (!phone || !/^[6-9]\d{9}$/.test(phone))                  { show('errPhone'); valid = false; }
+
+      return valid;
+    }
+
+    function clearErrors() {
+      ['errName','errEmail','errPhone'].forEach(id => hide(id));
+    }
+
+    // ─── SUCCESS PAGE ───
+    async function showSuccessPage(txnid, email) {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="status-page">
+          <div class="status-card">
+            <div class="status-icon">✅</div>
+            <h2>Payment Successful!</h2>
+            <p>Fetching your download link…</p>
+            <div id="downloadArea"><span class="spinner"></span></div>
+          </div>
+        </div>`;
+
+      const params = new URLSearchParams(window.location.search);
+      const t = txnid || params.get('txnid');
+      const m = email  || params.get('email');
+
+      if (!t || !m) {
+        document.getElementById('downloadArea').innerHTML = `<p style="color:var(--muted);font-size:.85rem">Please check your email for the download link.</p>`;
+        return;
+      }
+
+      try {
+        const res  = await fetch(`${APPS_SCRIPT_URL}?action=getDownloadLink&txnid=${encodeURIComponent(t)}&email=${encodeURIComponent(m)}`);
+        const data = await res.json();
+
+        if (data.success) {
+          document.querySelector('.status-card p').textContent = 'Your purchase is confirmed.';
+          document.querySelector('.status-card').insertAdjacentHTML('afterbegin', `<div class="asset-name-display">${escHtml(data.assetName)}</div>`);
+          document.getElementById('downloadArea').innerHTML = `
+            <a class="download-btn" href="${escHtml(data.downloadUrl)}" download>
+              ⬇ Download Your Asset
+            </a>`;
+        } else {
+          document.getElementById('downloadArea').innerHTML = `
+            <p style="color:var(--muted);font-size:.85rem">${escHtml(data.message)}<br>Please check your email.</p>`;
+        }
+      } catch (err) {
+        document.getElementById('downloadArea').innerHTML = `<p style="color:var(--muted);font-size:.85rem">Couldn't fetch link. Please check your email.</p>`;
+      }
+    }
+
+    // ─── FAILURE PAGE ───
+    function showFailurePage() {
+      document.getElementById('app').innerHTML = `
+        <div class="status-page">
+          <div class="status-card">
+            <div class="status-icon">❌</div>
+            <h2>Payment Failed</h2>
+            <p>Your payment couldn't be processed. No amount has been deducted.</p>
+            <a href="/" class="btn btn-primary">← Try Again</a>
+          </div>
+        </div>`;
+    }
+
+    // ─── TOAST ───
+    let toastTimer;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 3500);
+    }
+
+    // ─── UTILS ───
+    function show(id) { document.getElementById(id).style.display = 'block'; }
+    function hide(id) { document.getElementById(id).style.display = 'none'; }
+
+    function escHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+
+</body>
+</html>
