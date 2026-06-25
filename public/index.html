@@ -602,7 +602,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" style="display: none;">
         <label class="form-label" for="inputName">Full Name</label>
         <input class="form-input" type="text" id="inputName" placeholder="John Doe" autocomplete="name" />
         <span class="form-error" id="errName">Enter your full name</span>
@@ -612,7 +612,7 @@
         <input class="form-input" type="email" id="inputEmail" placeholder="john@example.com" autocomplete="email" />
         <span class="form-error" id="errEmail">Enter a valid email address</span>
       </div>
-      <div class="form-group">
+      <div class="form-group" style="display: none;">
         <label class="form-label" for="inputPhone">Phone</label>
         <input class="form-input" type="tel" id="inputPhone" placeholder="10-digit mobile number" maxlength="10" autocomplete="tel" />
         <span class="form-error" id="errPhone">Enter a valid 10-digit phone number</span>
@@ -775,9 +775,9 @@
       currentAsset = asset;
       document.getElementById('modalAssetName').textContent  = asset.name;
       document.getElementById('modalAssetPrice').textContent = '₹' + Number(asset.price).toLocaleString('en-IN');
-      document.getElementById('inputName').value  = '';
+      document.getElementById('inputName').value  = 'Customer';
       document.getElementById('inputEmail').value = '';
-      document.getElementById('inputPhone').value = '';
+      document.getElementById('inputPhone').value = '9999999999';
       clearErrors();
       document.getElementById('paymentModal').classList.add('open');
     }
