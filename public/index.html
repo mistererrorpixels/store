@@ -655,7 +655,7 @@
         const res  = await fetch(APPS_SCRIPT_URL + '?action=getAssets');
         const data = await res.json();
         if (!data.success) throw new Error(data.message || 'Failed to load assets');
-        allAssets = data.assets;
+        allAssets = data.assets.filter(a => !a.name.toLowerCase().includes('moody lightroom'));
         buildFilterChips();
         renderAssets(allAssets);
       } catch (err) {
