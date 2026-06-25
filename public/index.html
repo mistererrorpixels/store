@@ -703,7 +703,8 @@
       }
 
       grid.innerHTML = assets.map(a => {
-        const embedUrl = a.reelUrl ? reelToEmbedUrl(a.reelUrl) : null;
+        // Hardcoded Instagram Reel URL
+        const embedUrl = reelToEmbedUrl('https://www.instagram.com/reel/DaAfxcqqXm4/?igsh=eTdncXhubmRha20z');
         const formats  = a.formats && a.formats.length
           ? a.formats.map(f => `<span class="fmt-tag">${escHtml(f)}</span>`).join('')
           : '';
