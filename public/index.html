@@ -201,11 +201,16 @@
     }
 
     .card-media {
-      position: relative;
-      background: #000;
-      min-height: 360px;
-      display: flex;
-      align-items: stretch;
+  min-height: 360px;
+  background: #000; 
+  align-items: flex-start;   /* don't stretch-crop the iframe */
+}
+    .reel-iframe {
+      width: 100%;
+      height: 480px;     /* sensible starting guess before resize */
+      min-height: 0;      /* remove the old min-height: 380px */
+      border: none;
+      display: block;
     }
 
     .reel-embed-wrap {
@@ -215,13 +220,7 @@
       background: #000;
     }
 
-    .reel-iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 380px;
-      border: none;
-      display: block;
-    }
+
 
     .card-thumb-fallback {
       width: 100%;
@@ -583,7 +582,18 @@
 
     // ── INIT ──
     window.addEventListener('DOMContentLoaded', loadAssets);
+    window.addEventListener('message', function (event) {
+      if (!/instagram\.com$/.test(new URL(event.origin).hostname)) return;
+      let data;
+      try { data = JSON.parse(event.data); } catch { return; }
+      if (data.type !== 'MEASURE' || !data.details || !data.details.height) return;
 
+      document.querySelectorAll('.reel-iframe').forEach(function (iframe) {
+        if (iframe.contentWindow === event.source) {
+          iframe.style.height = data.details.height + 'px';
+        }
+      });
+    });
     // ── LOAD ASSETS ──
     async function loadAssets() {
       try {
