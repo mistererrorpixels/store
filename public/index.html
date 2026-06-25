@@ -655,7 +655,15 @@
         const res  = await fetch(APPS_SCRIPT_URL + '?action=getAssets');
         const data = await res.json();
         if (!data.success) throw new Error(data.message || 'Failed to load assets');
-        allAssets = data.assets.filter(a => !a.name.toLowerCase().includes('moody'));
+        allAssets = data.assets
+          .filter(a => !a.name.toLowerCase().includes('moody'))
+          .map(a => {
+            if (a.category.toLowerCase() === 'luts') a.category = 'Software';
+            if (a.description) {
+              a.description = a.description.replace(/Premiere pro exe file/ig, '').trim();
+            }
+            return a;
+          });
         buildFilterChips();
         renderAssets(allAssets);
       } catch (err) {
