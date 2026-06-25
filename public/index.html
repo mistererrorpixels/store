@@ -176,7 +176,7 @@
       background: rgba(184,150,46,0.08);
     }
 
-    /* ── PRODUCT CARDS (new layout) ── */
+    /* ── PRODUCT CARDS ── */
     .asset-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -195,13 +195,11 @@
       box-shadow: 0 16px 48px rgba(0,0,0,0.08);
     }
 
-    /* Side-by-side inside card */
     .card-inner {
       display: grid;
       grid-template-columns: 440px 1fr;
     }
 
-    /* LEFT: reel embed */
     .card-media {
       position: relative;
       background: #000;
@@ -210,7 +208,6 @@
       align-items: stretch;
     }
 
-    /* Instagram embed container */
     .reel-embed-wrap {
       width: 100%;
       position: relative;
@@ -218,7 +215,6 @@
       background: #000;
     }
 
-    /* We use an iframe pointing to Instagram's embed endpoint */
     .reel-iframe {
       width: 100%;
       height: 100%;
@@ -227,7 +223,6 @@
       display: block;
     }
 
-    /* Fallback thumbnail if no reel */
     .card-thumb-fallback {
       width: 100%;
       min-height: 360px;
@@ -242,7 +237,6 @@
       font-size: 3rem; color: var(--border);
     }
 
-    /* RIGHT: product info */
     .card-body {
       padding: 28px 32px;
       display: flex;
@@ -272,7 +266,6 @@
       margin-bottom: 20px;
     }
 
-    /* Formats */
     .card-formats {
       display: flex; flex-wrap: wrap; gap: 6px;
       margin-bottom: 24px;
@@ -288,7 +281,6 @@
 
     .card-divider { height: 1px; background: var(--border); margin: 4px 0 20px; }
 
-    /* Pricing + button row */
     .card-purchase {
       display: flex; align-items: center; gap: 16px;
       flex-wrap: wrap;
@@ -359,7 +351,7 @@
       100% { background-position: -200% 0; }
     }
 
-    /* ── MODAL OVERLAY ── */
+    /* ── MODAL ── */
     .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 200;
       background: rgba(0,0,0,0.40); backdrop-filter: blur(6px);
@@ -422,40 +414,9 @@
     .modal-submit { width: 100%; padding: 13px; margin-top: 8px; }
     .modal-note { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 14px; }
 
-    /* ── SUCCESS / FAILURE ── */
-    .status-page {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px; background: var(--bg);
-    }
-    .status-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 16px; padding: 48px 40px;
-      max-width: 480px; width: 100%; text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    }
-    .status-icon { font-size: 3.5rem; margin-bottom: 20px; }
-    .status-card h2 {
-      font-family: var(--font-head); font-size: 1.6rem;
-      font-weight: 700; color: var(--black); margin-bottom: 10px;
-    }
-    .status-card p { color: var(--muted); margin-bottom: 28px; line-height: 1.7; }
-    .status-card .asset-name-display {
-      font-family: var(--font-head); font-size: 1rem; font-weight: 600;
-      color: var(--accent); margin-bottom: 24px;
-    }
-    .download-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px; background: var(--accent); color: var(--white);
-      border-radius: var(--radius); font-weight: 600; font-size: 0.9rem;
-      text-decoration: none; cursor: pointer; border: none;
-      transition: all var(--tr);
-    }
-    .download-btn:hover { background: var(--accent-d); box-shadow: 0 6px 24px rgba(184,150,46,0.30); }
-
     .spinner {
       display: inline-block; width: 18px; height: 18px;
-      border: 2px solid rgba(0,0,0,0.15); border-top-color: var(--accent);
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
       border-radius: 50%; animation: spin 0.7s linear infinite;
       vertical-align: middle; margin-right: 6px;
     }
@@ -619,17 +580,9 @@
 
     let allAssets    = [];
     let currentAsset = null;
-    let activeFilter = 'All';
 
     // ── INIT ──
-    window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const status = params.get('status');
-
-      if      (status === 'success') showSuccessPage(params.get('txnid'), params.get('email'));
-      else if (status === 'failure') showFailurePage();
-      else                           loadAssets();
-    });
+    window.addEventListener('DOMContentLoaded', loadAssets);
 
     // ── LOAD ASSETS ──
     async function loadAssets() {
@@ -659,14 +612,12 @@
     }
 
     function filterAssets(cat) {
-      activeFilter = cat;
       document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
       renderAssets(cat === 'All' ? allAssets : allAssets.filter(a => a.category === cat));
     }
 
     // ── BUILD INSTAGRAM EMBED URL ──
     function reelToEmbedUrl(url) {
-      // Normalise: supports /reel/CODE/, /p/CODE/, /tv/CODE/
       try {
         const u   = new URL(url);
         const seg = u.pathname.replace(/\/$/, '').split('/');
@@ -692,7 +643,6 @@
           ? a.formats.map(f => `<span class="fmt-tag">${escHtml(f)}</span>`).join('')
           : '';
 
-        // Media column: prefer reel embed, then thumbnail img, then placeholder
         let mediaHtml;
         if (embedUrl) {
           mediaHtml = `
@@ -718,7 +668,6 @@
           <article class="asset-card">
             <div class="card-inner">
               <div class="card-media">${mediaHtml}</div>
-
               <div class="card-body">
                 <div>
                   <span class="card-badge">${escHtml(a.category)}</span>
@@ -726,7 +675,6 @@
                   <div class="card-desc">${escHtml(a.description)}</div>
                   ${formats ? `<div class="card-formats">${formats}</div>` : ''}
                 </div>
-
                 <div>
                   <div class="card-divider"></div>
                   <div class="card-purchase">
@@ -771,6 +719,10 @@
     });
 
     // ── SUBMIT PAYMENT ──
+    // No Content-Type header on this fetch — keeps the request as a CORS
+    // "simple request" so the browser does NOT send an OPTIONS preflight.
+    // Apps Script Web Apps don't respond to OPTIONS, so a preflight would
+    // fail even though the actual POST works fine.
     async function submitPayment() {
       if (!currentAsset) return;
       const name  = document.getElementById('inputName').value.trim();
@@ -785,8 +737,11 @@
       try {
         const res = await fetch(APPS_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'initiatePayment', assetId: currentAsset.id, name, email, phone }),
+          body: JSON.stringify({
+            action: 'initiatePayment',
+            assetId: currentAsset.id,
+            name, email, phone
+          }),
         });
         const data = await res.json();
         if (!data.success) throw new Error(data.message || 'Payment initiation failed');
@@ -821,58 +776,6 @@
     }
     function clearErrors() { ['errName','errEmail','errPhone'].forEach(hide); }
 
-    // ── SUCCESS PAGE ──
-    async function showSuccessPage(txnid, email) {
-      document.getElementById('app').innerHTML = `
-        <div class="status-page">
-          <div class="status-card">
-            <div class="status-icon">✅</div>
-            <h2>Payment Successful!</h2>
-            <p>Fetching your download link…</p>
-            <div id="downloadArea"><span class="spinner"></span></div>
-          </div>
-        </div>`;
-
-      const params = new URLSearchParams(window.location.search);
-      const t = txnid || params.get('txnid');
-      const m = email  || params.get('email');
-
-      if (!t || !m) {
-        document.getElementById('downloadArea').innerHTML = `<p style="color:var(--muted);font-size:.85rem">Please check your email for the download link.</p>`;
-        return;
-      }
-
-      try {
-        const res  = await fetch(`${APPS_SCRIPT_URL}?action=getDownloadLink&txnid=${encodeURIComponent(t)}&email=${encodeURIComponent(m)}`);
-        const data = await res.json();
-        if (data.success) {
-          document.querySelector('.status-card p').textContent = 'Your purchase is confirmed. A download link has also been sent to your email.';
-          document.querySelector('.status-card').insertAdjacentHTML('afterbegin', `<div class="asset-name-display">${escHtml(data.assetName)}</div>`);
-          document.getElementById('downloadArea').innerHTML = `
-            <a class="download-btn" href="${escHtml(data.downloadUrl)}" target="_blank">
-              ⬇ Download Your Asset
-            </a>`;
-        } else {
-          document.getElementById('downloadArea').innerHTML = `<p style="color:var(--muted);font-size:.85rem">${escHtml(data.message)}<br>Please check your email.</p>`;
-        }
-      } catch {
-        document.getElementById('downloadArea').innerHTML = `<p style="color:var(--muted);font-size:.85rem">Couldn't fetch link. Please check your email.</p>`;
-      }
-    }
-
-    // ── FAILURE PAGE ──
-    function showFailurePage() {
-      document.getElementById('app').innerHTML = `
-        <div class="status-page">
-          <div class="status-card">
-            <div class="status-icon">❌</div>
-            <h2>Payment Failed</h2>
-            <p>Your payment couldn't be processed. No amount has been deducted.</p>
-            <a href="/" class="btn btn-primary">← Try Again</a>
-          </div>
-        </div>`;
-    }
-
     // ── TOAST ──
     let toastTimer;
     function showToast(msg) {
@@ -882,7 +785,6 @@
       toastTimer = setTimeout(() => el.classList.remove('show'), 3500);
     }
 
-    // ── UTILS ──
     function show(id) { document.getElementById(id).style.display = 'block'; }
     function hide(id) { document.getElementById(id).style.display = 'none'; }
     function escHtml(str) {
